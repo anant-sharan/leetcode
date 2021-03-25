@@ -1,45 +1,40 @@
 class Solution {
     public void nextPermutation(int[] nums) {
-        int dec=0,l=nums.length,i=l-1,j=0,t=0,c=0;
-        while(i>0)
+        int len=nums.length,i,c=0,t=0,l=0,r=len-1,p=0,j;
+        for(i=len-1;i>0;i--)
         {
             if(nums[i]>nums[i-1])
             {
-                dec=i-1;
+                p=i-1;
+                l=i;
                 ++c;
                 break;
             }
-            --i;
         }
         if(c==0)
         {
             Arrays.sort(nums);
-            
         }
         else
         {
-        i=l-1;
-        while(i>=0)
-        {
-            if(nums[i]>nums[dec])
+            for(j=len-1;j>=0;j--)
             {
-                t=nums[dec];
-                nums[dec]=nums[i];
-                nums[i]=t;
-                break;
+                if(nums[j]>nums[p])
+                {
+                    t=nums[j];
+                    nums[j]=nums[p];
+                    nums[p]=t;
+                    break;
+                }
             }
-            --i;
-        }
-        j=l-1;
-        i=dec+1;
-        while(i<j)
-        {
-            t=nums[i];
-            nums[i]=nums[j];
-            nums[j]=t;
-            ++i;
-            --j;
-        }
+            while(l<=r)
+            {
+                t=nums[l];
+                nums[l]=nums[r];
+                nums[r]=t;
+                ++l;
+                --r;
+            }
         }
     }
 }
