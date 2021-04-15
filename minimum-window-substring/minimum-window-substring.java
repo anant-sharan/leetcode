@@ -14,6 +14,8 @@ class Solution {
             else
                 th.put(ch,1);
         }
+        if(sl<tl)
+            return "";
         for(i=0;i<sl;i++)
         {
             ch=s.charAt(i);
