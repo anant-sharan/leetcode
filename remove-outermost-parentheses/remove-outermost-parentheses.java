@@ -2,8 +2,9 @@ import java.util.*;
 class Solution {
     public String removeOuterParentheses(String S) {
         int l=S.length(),i,c=0;
-        String str="",s="";
+        String str="";
         Stack<Character> st=new Stack<Character>();
+        StringBuffer sb=new StringBuffer();
         for(i=0;i<l;i++)
         {
             char ch=S.charAt(i);
@@ -25,10 +26,10 @@ class Solution {
                     str=st.pop()+str;
                 }
                 st.pop();
-                s=s+str;
+                sb.append(str);
 	            str="";
             }
         }
-        return s;     
+        return String.valueOf(sb);     
     }
 }
