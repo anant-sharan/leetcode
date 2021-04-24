@@ -15,7 +15,7 @@ class Solution {
                 {
                     ch3=s.charAt(left);
                     ch4=s.charAt(right);
-                    if(ch3!=ch4 && ch3==ch1 && ch4==ch2)
+                    if(ch3==ch1 && ch4==ch2)
                         ++c;
                     else
                         break;
