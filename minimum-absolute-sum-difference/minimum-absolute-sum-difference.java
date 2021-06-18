@@ -1,27 +1,28 @@
 class Solution {
     public int minAbsoluteSumDiff(int[] nums1, int[] nums2) {
-        int l=nums1.length,i,max=0,maxp=0,minp=0,min=Integer.MAX_VALUE;
-        long s=0;
+        int l=nums1.length,i;
+        int mod = (int)Math.pow(10,9) + 7;
+        long tot=0,min=Long.MAX_VALUE;
+        TreeSet<Integer> tree=new TreeSet<Integer>();
         for(i=0;i<l;i++)
         {
-            s=s+Math.abs(nums1[i]-nums2[i]);
-            if(Math.abs(nums1[i]-nums2[i])>max)
-            {
-                max=Math.abs(nums1[i]-nums2[i]);
-                maxp=i;
-            }
+            tot=tot+Math.abs(nums1[i]-nums2[i]);
+            tree.add(nums1[i]);
         }
         for(i=0;i<l;i++)
         {
-            if(Math.abs(nums1[i]-nums2[maxp])<min)
-            {
-                min=Math.abs(nums1[i]-nums2[maxp]);
-                minp=i;
-            }
+            long a=Long.MAX_VALUE,b=Long.MAX_VALUE;
+            long t=tot;
+            t=t-(Math.abs(nums1[i]-nums2[i]));
+            Integer ceil=tree.ceiling(nums2[i]);
+            Integer floor=tree.floor(nums2[i]);
+            if(ceil!= null)
+                a=Math.min(Math.abs(ceil-nums2[i]),Math.abs(nums1[i]-nums2[i]));
+            if(floor!=null)
+                b=Math.min(Math.abs(floor-nums2[i]),Math.abs(nums1[i]-nums2[i]));
+            t=t+(Math.min(a,b));
+            min=Math.min(min,t);
         }
-        s=s-max+min;
-        s=s%((int)Math.pow(10,9)+7);
-        int sum=(int)s;
-        return sum;
+        return (int)(min%mod);
     }
 }
