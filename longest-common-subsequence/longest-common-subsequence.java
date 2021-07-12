@@ -28,7 +28,7 @@ class Solution {
                         len2=dp[i][j-1].length();
                     else
                         len2=0;
-                    if(len1>=len2)
+                    if(len1>len2)
                         dp[i][j]=dp[i-1][j];
                     else
                         dp[i][j]=dp[i][j-1];
